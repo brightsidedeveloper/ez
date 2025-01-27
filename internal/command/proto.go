@@ -21,7 +21,7 @@ func Proto() error {
 	if err := clone.Repo(repoDir, "https://github.com/brightsidedeveloper/ah.git"); err != nil {
 		return err
 	}
-	cmd := exec.Command("npm", "i")
+	cmd := exec.Command("pnpm", "i")
 	cmd.Dir = clientDir
 	if err := cmd.Run(); err != nil {
 		return fmt.Errorf("failed to install deps: %w", err)
