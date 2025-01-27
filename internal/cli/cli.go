@@ -15,7 +15,7 @@ func Run() {
 			huh.NewSelect[string]().
 				Title("Templates").
 				Options(
-					huh.NewOption("Go, Protobuf, SQLC, TanStack, Vite", "proto"),
+					huh.NewOption("Ah", "proto"),
 				).
 				Value(&cmd),
 		),
