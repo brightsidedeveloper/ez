@@ -14,11 +14,10 @@ func Proto() error {
 		fmt.Printf("Failed to get current working directory: %v\n", err)
 	}
 
-	// Resolve the relative paths to absolute paths
 	repoDir := filepath.Join(baseDir, "app")
 	clientDir := filepath.Join(repoDir, "client")
 	serverDir := filepath.Join(repoDir, "server")
-	if err := clone.Repo(repoDir, "https://github.com/brightsidedeveloper/ah.git"); err != nil {
+	if err := clone.Repo(repoDir, "https://github.com/brightsidedeveloper/ah-uth.git"); err != nil {
 		return err
 	}
 	cmd := exec.Command("pnpm", "i")
