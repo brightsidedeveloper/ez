@@ -13,6 +13,32 @@ func Run() {
 	form := huh.NewForm(
 		huh.NewGroup(
 			huh.NewSelect[string]().
+				Title("What's good?").
+				Options(
+					huh.NewOption("Templates", "templates"),
+				).
+				Value(&cmd),
+		),
+	)
+
+	if err := form.Run(); err != nil {
+		log.Fatal(err)
+	}
+
+	switch cmd {
+	case "templates":
+		Templates()
+	default:
+		log.Fatalf("unknown command %s", cmd)
+	}
+}
+
+func Templates() {
+	var cmd string
+
+	form := huh.NewForm(
+		huh.NewGroup(
+			huh.NewSelect[string]().
 				Title("Templates").
 				Options(
 					huh.NewOption("Ah", "ah"),
