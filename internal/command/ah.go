@@ -8,13 +8,16 @@ import (
 	"path/filepath"
 )
 
-func Ah() error {
+func Ah(name string) error {
+	if name == "" {
+		return fmt.Errorf("name is required")
+	}
 	baseDir, err := os.Getwd()
 	if err != nil {
 		fmt.Printf("Failed to get current working directory: %v\n", err)
 	}
 
-	repoDir := filepath.Join(baseDir, "app")
+	repoDir := filepath.Join(baseDir, name)
 	clientDir := filepath.Join(repoDir, "client")
 	serverDir := filepath.Join(repoDir, "server")
 	if err := clone.Repo(repoDir, "https://github.com/brightsidedeveloper/ah.git"); err != nil {

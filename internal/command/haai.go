@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 )
 
-func Ha(name string) error {
+func Haai(name string) error {
 	if name == "" {
 		return fmt.Errorf("name is required")
 	}
@@ -22,7 +22,7 @@ func Ha(name string) error {
 	nativeDir := filepath.Join(repoDir, "react-native")
 	serverDir := filepath.Join(repoDir, "go-bsd")
 
-	if err := clone.Repo(repoDir, "https://github.com/brightsidedeveloper/ha.git"); err != nil {
+	if err := clone.Repo(repoDir, "https://github.com/brightsidedeveloper/haai.git"); err != nil {
 		return err
 	}
 	cmd := exec.Command("pnpm", "i")

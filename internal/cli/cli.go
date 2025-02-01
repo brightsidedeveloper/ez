@@ -2,6 +2,7 @@ package cli
 
 import (
 	"ez/internal/command"
+	"fmt"
 	"log"
 
 	"github.com/charmbracelet/huh"
@@ -35,6 +36,7 @@ func Run() {
 
 func Templates() {
 	var cmd string
+	var name string
 
 	form := huh.NewForm(
 		huh.NewGroup(
@@ -44,8 +46,14 @@ func Templates() {
 					huh.NewOption("Ah", "ah"),
 					huh.NewOption("Ah-uth", "ahuth"),
 					huh.NewOption("Ha", "ha"),
+					huh.NewOption("Haai", "haai"),
 				).
 				Value(&cmd),
+		),
+		huh.NewGroup(
+			huh.NewInput().
+				Title("What’s your name?").
+				Value(&name),
 		),
 	)
 
@@ -53,14 +61,18 @@ func Templates() {
 		log.Fatal(err)
 	}
 
+	fmt.Printf("Hey, %s!\n", name)
+
 	var err error
 	switch cmd {
 	case "ah":
-		err = command.Ah()
-	case "ah-uth":
-		err = command.Ahuth()
+		err = command.Ah(name)
+	case "ahuth":
+		err = command.Ahuth(name)
 	case "ha":
-		err = command.Ha()
+		err = command.Ha(name)
+	case "haai":
+		err = command.Haai(name)
 	default:
 		log.Fatalf("unknown command %s", cmd)
 	}
