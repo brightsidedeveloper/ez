@@ -15,7 +15,9 @@ func Run() {
 			huh.NewSelect[string]().
 				Title("Templates").
 				Options(
-					huh.NewOption("Ah", "proto"),
+					huh.NewOption("Ah", "ah"),
+					huh.NewOption("Ah-uth", "ahuth"),
+					huh.NewOption("Ha", "ha"),
 				).
 				Value(&cmd),
 		),
@@ -25,13 +27,18 @@ func Run() {
 		log.Fatal(err)
 	}
 
+	var err error
 	switch cmd {
-	case "proto":
-		err := command.Proto()
-		if err != nil {
-			log.Fatal(err)
-		}
+	case "ah":
+		err = command.Ah()
+	case "ah-uth":
+		err = command.Ahuth()
+	case "ha":
+		err = command.Ha()
 	default:
 		log.Fatalf("unknown command %s", cmd)
+	}
+	if err != nil {
+		log.Fatal(err)
 	}
 }
