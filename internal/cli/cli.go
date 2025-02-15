@@ -67,9 +67,9 @@ func Templates() {
 	}
 
 	fmt.Printf("Hey, %s! Give me a second to cook...\n\n", name)
-	// Start Cooking
 	s := spinner.New(spinner.CharSets[14], 100*time.Millisecond)
-	s.Start() // Start the spinner
+	s.Start()
+
 	var err error
 	switch cmd {
 	case "ah":
@@ -86,7 +86,6 @@ func Templates() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	// Finish Cooking
 	s.Stop()
 	fmt.Println("\n\nHave Fun!")
 	baseDir, err := os.Getwd()
