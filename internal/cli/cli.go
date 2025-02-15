@@ -4,7 +4,12 @@ import (
 	"ez/internal/command"
 	"fmt"
 	"log"
+	"os"
+	"os/exec"
+	"path/filepath"
+	"time"
 
+	"github.com/briandowns/spinner"
 	"github.com/charmbracelet/huh"
 )
 
@@ -61,8 +66,10 @@ func Templates() {
 		log.Fatal(err)
 	}
 
-	fmt.Printf("Hey, %s!\n", name)
-
+	fmt.Printf("Hey, %s! Give me a second to cook...\n\n", name)
+	// Start Cooking
+	s := spinner.New(spinner.CharSets[14], 100*time.Millisecond)
+	s.Start() // Start the spinner
 	var err error
 	switch cmd {
 	case "ah":
@@ -77,6 +84,18 @@ func Templates() {
 		log.Fatalf("unknown command %s", cmd)
 	}
 	if err != nil {
+		log.Fatal(err)
+	}
+	// Finish Cooking
+	s.Stop()
+	fmt.Println("\n\nHave Fun!")
+	baseDir, err := os.Getwd()
+	if err != nil {
+		log.Fatal(err)
+	}
+	openCmd := exec.Command("code", ".")
+	openCmd.Dir = filepath.Join(baseDir, name)
+	if err := openCmd.Run(); err != nil {
 		log.Fatal(err)
 	}
 }
